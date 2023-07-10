@@ -10,10 +10,10 @@ import static lombok.AccessLevel.*;
 @Builder
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PROTECTED)
-public class RequestMemberSignupDto {
+public class RequestMemberLoginDto {
 
     @NotEmpty(message = "username을 입력해주세요.")
-    @Pattern(regexp = "^[a-z0-9A-Z]{4,10}$",
+    @Pattern(regexp = "^[a-z0-9]{4,10}$",
             message = "username은 4~10자, 영문과 숫자로만 구성될 수 있습니다.")
     private String username;
 

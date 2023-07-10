@@ -9,8 +9,6 @@ import princeton.test.exception.dto.ResponseErrorDto;
 import princeton.test.member.controller.MemberController;
 import princeton.test.util.resource.ErrorResource;
 
-import java.util.Objects;
-
 import static java.util.Objects.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 

@@ -10,16 +10,18 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import princeton.test.member.domain.role.MemberRole;
 
-import static jakarta.persistence.EnumType.*;
-import static jakarta.persistence.GenerationType.*;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.*;
 
-@Entity @Getter @Builder
+@Entity
+@Getter @Builder
 @NoArgsConstructor(access = PROTECTED)
-@AllArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
 public class Member {
 
-    @Id @GeneratedValue(strategy = IDENTITY)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
@@ -35,5 +37,9 @@ public class Member {
 
     public void encodedPassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
+    }
+
+    public boolean isInvalidPassword(String password, PasswordEncoder passwordEncoder) {
+        return !passwordEncoder.matches(password, this.password);
     }
 }
