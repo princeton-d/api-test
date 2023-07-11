@@ -35,4 +35,20 @@ public class BoardRepositoryImpl implements BoardQueryRepository {
         return null;
     }
 
+    @Override
+    public List<Tuple> getTuple() {
+        return queryFactory
+                .select(
+                        board.title,
+                        member.username,
+                        board.content,
+                        queryFactory.select(boardLike.count().intValue()).from(boardLike).where(boardLike.boardId.eq(board.id))
+
+                )
+                .from(board)
+                .leftJoin(member).on(board.memberId.eq(member.id))
+                .leftJoin(boardLike).on(board.id.eq(boardLike.boardId))
+                .fetch();
+    }
+
 }

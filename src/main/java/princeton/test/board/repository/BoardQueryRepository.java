@@ -8,4 +8,6 @@ import java.util.List;
 public interface BoardQueryRepository {
 
     List<ResponseBoardDto> findResponseBoardDtos();
+
+    List<Tuple> getTuple();
 }
